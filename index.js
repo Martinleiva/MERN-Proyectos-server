@@ -8,14 +8,21 @@ const app = express();
 //Conectar a la base de datos
 conectarDB();
 
+//Habilitar CORS
+app.use(cors());
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+
 //Habilitar express.json
 app.use(express.json({ extended: true }));
 
 //Puerto de la app
 const port = process.env.port || 4000;
-
-//Habilitar CORS
-app.use(cors());
 
 //Importar rutas
 app.use('/api/usuarios', require('./routes/usuarios'));
