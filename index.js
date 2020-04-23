@@ -5,19 +5,17 @@ const cors = require('cors');
 //Crear servidor
 const app = express();
 
-app.setHeader('Access-Control-Allow-Origin', 'https://glacial-stream-09387.herokuapp.com/');
-
 //Conectar a la base de datos
 conectarDB();
-
-//Habilitar CORS
-app.use(cors());
 
 //Habilitar express.json
 app.use(express.json({ extended: true }));
 
 //Puerto de la app
 const port = process.env.port || 4000;
+
+//Habilitar CORS
+app.use(cors());
 
 //Importar rutas
 app.use('/api/usuarios', require('./routes/usuarios'));
