@@ -5,6 +5,8 @@ const cors = require('cors');
 //Crear servidor
 const app = express();
 
+app.header("Access-Control-Allow-Headers", 'Authorization, Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+
 //Conectar a la base de datos
 conectarDB();
 
